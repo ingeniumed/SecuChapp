@@ -3,7 +3,7 @@ package com.application.secuchapp;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
-
+//IT WORKS
 public class SecureChat extends Activity {
 
     @Override
