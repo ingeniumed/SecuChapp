@@ -1,14 +1,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="#000000" >
 
-    <TextView
+    <EditText
+        android:id="@+id/password"
+        android:textColor="#ffffffff"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="174dp"
+        android:ems="10"
+        android:hint="enter password here"
+        android:inputType="textPassword" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/email_address"
+        android:textColor="#ffffffff"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/password"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="62dp"
+        android:ems="10"
+        android:hint="Enter user name here"
+        android:inputType="textEmailAddress" >
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/log_in"
+        android:textColor="#ffffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/hello_world"
+        android:layout_marginTop="76dp"
+        android:text="	Log In	"
         tools:context=".SecureChat" />
 
 </RelativeLayout>
