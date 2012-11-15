@@ -4,18 +4,6 @@
     android:layout_height="match_parent"
     android:background="#000000" >
 
-    <Button
-        android:id="@+id/log_in"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="26dp"
-        android:layout_marginLeft="100dp"
-        android:text="	Log In	"
-        android:textColor="#ffffffff"
-        tools:context=".SecureChat" />
-
     <EditText
         android:id="@+id/temporary"
         android:layout_width="fill_parent"
@@ -29,5 +17,16 @@
         android:textColor="#ffffffff"
         android:textStyle="italic" />
     <requestFocus />
+
+    <Button
+        android:id="@+id/log_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="36dp"
+        android:text="	Log Out	"
+        android:textColor="#ffffffff"
+        tools:context=".SecureChat" />
 
 </RelativeLayout>
