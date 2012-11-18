@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainScreen"></activity>
+        <activity android:name=".ConversationScreen"></activity>
     </application>
 
 </manifest>

@@ -33,13 +33,32 @@
 
     <Button
         android:id="@+id/log_in"
-        android:textColor="#ffffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="76dp"
+        android:layout_marginBottom="53dp"
         android:text="	Log In	"
+        android:textColor="#ffffffff"
         tools:context=".SecureChat" />
+
+    <CheckBox
+        android:id="@+id/remember_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/log_in"
+        android:layout_below="@+id/password"
+        android:layout_marginTop="36dp"
+        android:textColor="#ffffffff"
+        android:text="Remember me?" />
+
+    <CheckBox
+        android:id="@+id/log_in_automatically"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/remember_password"
+        android:layout_below="@+id/remember_password"
+        android:text="Log in automatically"
+        android:textColor="#ffffffff" />
 
 </RelativeLayout>

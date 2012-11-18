@@ -5,12 +5,16 @@
         android:orderInCategory="100"
         android:showAsAction="ifRoom|collapseActionView"
         android:actionViewClass="android.widget.SearchView" />
+	<item android:id="@+id/menu_new_conversation"
+        android:title="+"
+        android:orderInCategory="200"
+        android:showAsAction="ifRoom|collapseActionView" />
 	<item android:id="@+id/menu_settings"
         android:title="Settings"
-        android:orderInCategory="200"
+        android:orderInCategory="300"
         android:showAsAction="never" />    
     <item android:id="@+id/menu_logout"
         android:title="Log Out"
-        android:orderInCategory="300"
+        android:orderInCategory="400"
         android:showAsAction="never" />
 </menu>

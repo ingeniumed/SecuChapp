@@ -30,19 +30,15 @@ public class MainScreen extends Activity {
 	     actionBar.setDisplayShowTitleEnabled(true);
 	     actionBar.setDisplayShowHomeEnabled(false); 
 	     
-	  /**
-	   * Declare an instance of the log out button from the
-	   * xml file using its id. Then finish once its clicked.
-	   * 
-		 Button log_out = (Button) findViewById (R.id.log_out);
-		 log_out.setOnClickListener(new View.OnClickListener(){
-			 public void onClick(View view) {
-				 //Intent intent_2 = new Intent();
-				 finish();
-			 }
-		 });
-	 }
-	 */
+	     Button conversation = (Button) findViewById (R.id.conversation);
+	     conversation.setOnClickListener(new View.OnClickListener(){
+	     	public void onClick(View view) {
+	     		Intent intent_2 = new Intent(view.getContext(),ConversationScreen.class);
+	        		overridePendingTransition(R.anim.rotate_out,R.anim.rotate_in);
+	        		startActivityForResult(intent_2,0);
+	     	}
+	     });
+	     
 	 }
 	 public boolean onCreateOptionsMenu(Menu menu) {
 		 getMenuInflater().inflate(R.menu.activity_secure_chat, menu);
@@ -54,6 +50,12 @@ public class MainScreen extends Activity {
 		 switch (item.getItemId()) {
 		 case R.id.menu_logout:
 			 finish();
+			 return true;
+		 case R.id.menu_new_conversation:
+			 return true;
+		 case R.id.menu_settings:
+			 return true;
+		 case R.id.menu_search:
 			 return true;
 		 default:
 			 return super.onOptionsItemSelected(item);
