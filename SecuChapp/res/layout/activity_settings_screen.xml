@@ -5,7 +5,7 @@
     android:background="#000000" >
 
     <CheckBox
-        android:id="@+id/checkBox1"
+        android:id="@+id/remember_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -15,33 +15,33 @@
         android:textColor="#ffffffff" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/log_in"
         android:textColor="#ffffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/checkBox1"
+        android:layout_below="@+id/remember_password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp"
         android:text="Login Automatically" />
 
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/checkBox1"
+        android:layout_alignLeft="@+id/remember_password"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="53dp"
         android:text="Save"
         android:textColor="#ffffffff" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/cancel"
         android:textColor="#ffffffff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/button1"
-        android:layout_alignRight="@+id/checkBox1"
+        android:layout_alignBottom="@+id/save"
+        android:layout_alignRight="@+id/remember_password"
         android:text="Cancel" />
 
 </RelativeLayout>
