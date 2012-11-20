@@ -98,10 +98,7 @@ public class ConversationScreen extends Activity {
 	            // from server was added to the list
 	            mAdapter.notifyDataSetChanged();
 	        }
-	    }
-	
-
-	
+	    }	
 	 public boolean onCreateOptionsMenu(Menu menu) {
 		 getMenuInflater().inflate(R.menu.activity_conversations_screen, menu);
 		 return true;
@@ -114,6 +111,7 @@ public class ConversationScreen extends Activity {
 			 finish();
 			 return true;
 		 case R.id.menu_settings:
+			 startActivity(new Intent(this, SettingScreen.class));
 			 return true;
 		 default:
 			 return super.onOptionsItemSelected(item);

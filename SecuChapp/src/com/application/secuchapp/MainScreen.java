@@ -54,6 +54,7 @@ public class MainScreen extends Activity {
 		 case R.id.menu_new_conversation:
 			 return true;
 		 case R.id.menu_settings:
+			 startActivity(new Intent(this, SettingScreen.class));
 			 return true;
 		 case R.id.menu_search:
 			 return true;
