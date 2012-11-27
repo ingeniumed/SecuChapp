@@ -58,7 +58,7 @@ public class ConversationScreen extends Activity {
 	                String message = editText.getText().toString();
 	 
 	                //add the text in the arrayList
-	                arrayList.add("client: " + message);
+	                arrayList.add("Me: " + message);
 	 
 	                //sends the message to the server
 	                if (mTcpClient != null) {
@@ -93,7 +93,7 @@ public class ConversationScreen extends Activity {
 	            super.onProgressUpdate(values);
 	 
 	            //in the arrayList we add the messaged received from server
-	            arrayList.add("server:" + values[0]);
+	            arrayList.add(values[0]);
 	            // notify the adapter that the data set has changed. This means that new message received
 	            // from server was added to the list
 	            mAdapter.notifyDataSetChanged();
@@ -111,7 +111,7 @@ public class ConversationScreen extends Activity {
 			 finish();
 			 return true;
 		 case R.id.menu_settings:
-			 startActivity(new Intent(this, SettingScreen.class));
+			 //startActivity(new Intent(this, SettingScreen.class));
 			 return true;
 		 default:
 			 return super.onOptionsItemSelected(item);

@@ -11,6 +11,7 @@
               android:layout_height="0dip"
               android:layout_weight="1"
               android:transcriptMode="alwaysScroll"
+              android:scrollbars="vertical"
               android:cacheColorHint="#ffffffff"
               android:listSelector="@android:color/transparent"/>
  
