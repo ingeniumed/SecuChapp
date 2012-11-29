@@ -9,7 +9,7 @@ import java.net.Socket;
 public class TCPClient {
  
     private String serverMessage;
-    public static final String SERVERIP = "130.113.97.55"; //your computer IP address
+    public static final String SERVERIP = "192.168.43.145"; //your computer IP address
     public static final int SERVERPORT = 4550;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
