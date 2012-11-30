@@ -26,6 +26,7 @@
         <activity android:name=".MainScreen"></activity>
         <activity android:name=".ConversationScreen"></activity>
         <activity android:name=".SettingScreen"></activity>
+        <activity android:name=".ContactScreen"></activity>
     </application>
 
 </manifest>

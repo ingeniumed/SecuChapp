@@ -111,7 +111,7 @@ public class ConversationScreen extends Activity {
 			 finish();
 			 return true;
 		 case R.id.menu_settings:
-			 //startActivity(new Intent(this, SettingScreen.class));
+			 startActivity(new Intent(this, SettingScreen.class));
 			 return true;
 		 default:
 			 return super.onOptionsItemSelected(item);
