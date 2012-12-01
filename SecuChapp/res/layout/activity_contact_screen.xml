@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
-              android:background="#000000"
-        >
-    <ListView android:id="@+id/list"
-              android:textColor="#ffffff"
-              android:layout_width="fill_parent"
-              android:layout_height="0dip"
-              android:layout_weight="1"
-              android:transcriptMode="alwaysScroll"
-              android:scrollbars="vertical"
-              android:cacheColorHint="#ffffffff"
-              android:listSelector="@android:color/transparent"/>
- 
- 
-    <LinearLayout android:id="@+id/footer"
-                  android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:orientation="horizontal"
-                  android:gravity="bottom">
-    </LinearLayout>
-</LinearLayout>
+              android:background="#000000">
+    <Button
+        android:id="@+id/conversation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:textColor="#ffffffff"
+        android:text="Conversation" />
+
+    </RelativeLayout>
