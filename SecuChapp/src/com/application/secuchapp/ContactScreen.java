@@ -87,12 +87,12 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 	    				 }),
 	    				 this);
 	     
+	     final Intent i = new Intent(this, profile_screen.class);
 	     mContacts.setOnItemClickListener(new OnItemClickListener() {
 	    	 public void onItemClick(AdapterView arg0, View v, int position,long id) {
-	    		 String contact="";
-	    		 Intent intent_1 = new Intent(v.getContext(),profile_screen.class);
-	        	 startActivityForResult(intent_1,0);
-	    	 	 intent_1.putExtra(contact, contacts.get(position));
+	    		 String name = contacts.get(position);
+	    		 i.putExtra("name", name);
+	    		 startActivity(i); 
 	    	 }
 	    	 });
 	 }
