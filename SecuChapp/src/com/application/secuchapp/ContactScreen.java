@@ -16,6 +16,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -84,7 +87,11 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 	    				 }),
 	    				 this);
 	     
-	     mContacts.OnItemClickListener
+	     mContacts.setOnItemClickListener(new OnItemClickListener() {
+	    	 public void onItemClick(AdapterView arg0, View v, int position,long id) {
+	    	 	//this is where the list item click is recorded
+	    	 }
+	    	 });
 	 }
 	 public boolean onCreateOptionsMenu(Menu menu) {
 		 getMenuInflater().inflate(R.menu.activity_contacts_screen, menu);
