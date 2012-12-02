@@ -168,6 +168,7 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 					if (mService.numNewMessages != 0) {
 						//Grab latest message
 						 contacts.add(mService.getLatestMessage());
+						 Log.e("ContactScreen",contacts.get(0));
 						 //Tell the adapter that the data set has changed
 						 Log.e("ContactScreen", "Contact delivered to adapter");
 						 mAdapter.notifyDataSetChanged();
