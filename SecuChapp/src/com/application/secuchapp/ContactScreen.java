@@ -48,6 +48,7 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 		//Start the message listener
 		listener = new Listener();
 		listener.start();
+		mService.sendMessage("C|");
 		 
 		 /*
 		  * Custom action bar that has no app icon
@@ -71,8 +72,7 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 	     
 	     Button conversation = (Button) findViewById (R.id.conversation);
 	     conversation.setOnClickListener(new View.OnClickListener(){
-	     	public void onClick(View view) {
-	     		mService.sendMessage("C|"); 
+	     	public void onClick(View view) { 
 				
 				listener.interrupt();
 	     		
