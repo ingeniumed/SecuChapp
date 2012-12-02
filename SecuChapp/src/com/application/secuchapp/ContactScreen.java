@@ -1,11 +1,16 @@
 package com.application.secuchapp;
 
 import java.util.ArrayList;
+import com.application.secuchapp.TCPClientService.LocalBinder;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,6 +24,9 @@ import android.widget.SearchView;
 public class ContactScreen extends FragmentActivity implements ActionBar.OnNavigationListener {
 	
 	private static Boolean state = true;
+	private TCPClientService mService;	//This is the TCPClient Service which 
+	private boolean mBound;				//is the service bound or not?
+	private Listener listener;			//Listener thread which grabs new messages from the 
 	
 	 @SuppressWarnings("unchecked")
 	@Override
@@ -31,6 +39,15 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 		 super.onCreate(savedInstanceState);
 		 super.setTitle("Secure Chat");
 		 setContentView(R.layout.activity_contact_screen);
+		 
+		//Start the TCP Client 
+        Intent intent = new Intent(this, TCPClientService.class);
+		startService(intent);
+		bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
+	        
+		//Start the message listener
+		listener = new Listener();
+		listener.start();
 		 
 		 /*
 		  * Custom action bar that has no app icon
@@ -55,8 +72,12 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 	     Button conversation = (Button) findViewById (R.id.conversation);
 	     conversation.setOnClickListener(new View.OnClickListener(){
 	     	public void onClick(View view) {
+	     		mService.sendMessage("C|"); 
+				
+				listener.interrupt();
+	     		
 	     		Intent intent_2 = new Intent(view.getContext(),ConversationScreen.class);
-	        		startActivityForResult(intent_2,0);
+	        	startActivityForResult(intent_2,0);
 	     	}
 	     });
 	 }
@@ -99,4 +120,47 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 		}
 		return false;
 	}
+	
+	@Override
+    /**
+     * OnStop method for Login Screen
+     */
+    protected void onStop() {
+        super.onStop();
+        // Unbind from the service
+        if (mBound) {
+            unbindService(mConnection);
+            mBound = false;
+        }
+    }
+    
+    /**
+	  * The service connection is needed to setup the connection to the service
+	  */
+    private ServiceConnection mConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+            LocalBinder binder = (LocalBinder) service;
+            mService = binder.getService();
+            mBound = true;
+        }
+
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
+    
+    /**
+	  * This Thread listens for messages from the server and handles them 
+	  */
+    private class Listener extends Thread{
+    	public void run(){
+    		while(mService == null);
+    		while(!this.isInterrupted()){
+					if (mService.numNewMessages != 0) {
+						//latestMessage = mService.getLatestMessage();
+					}
+    		}
+    	}
+    }
+
 }

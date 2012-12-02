@@ -72,6 +72,19 @@ public class SecureChat extends Activity {
     
     }
     
+    @Override
+    /**
+     * OnStop method for Login Screen
+     */
+    protected void onStop() {
+        super.onStop();
+        // Unbind from the service
+        if (mBound) {
+            unbindService(mConnection);
+            mBound = false;
+        }
+    }
+    
     /**
 	  * The service connection is needed to setup the connection to the service
 	  */
