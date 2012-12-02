@@ -19,24 +19,25 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int cancel=0x7f08000b;
+        public static final int cancel=0x7f08000c;
+        public static final int contacts=0x7f080005;
         public static final int conversation=0x7f080004;
         public static final int editText=0x7f080002;
-        public static final int email_address=0x7f080006;
+        public static final int email_address=0x7f080007;
         public static final int footer=0x7f080001;
         public static final int list=0x7f080000;
-        public static final int list_item=0x7f08000c;
-        public static final int list_item_text_view=0x7f08000d;
-        public static final int log_in=0x7f080007;
-        public static final int log_in_automatically=0x7f080009;
-        public static final int menu_home=0x7f08000e;
-        public static final int menu_logout=0x7f080012;
-        public static final int menu_new_conversation=0x7f080011;
-        public static final int menu_search=0x7f080010;
-        public static final int menu_settings=0x7f08000f;
-        public static final int password=0x7f080005;
-        public static final int remember_password=0x7f080008;
-        public static final int save=0x7f08000a;
+        public static final int list_item=0x7f08000d;
+        public static final int list_item_text_view=0x7f08000e;
+        public static final int log_in=0x7f080008;
+        public static final int log_in_automatically=0x7f08000a;
+        public static final int menu_home=0x7f08000f;
+        public static final int menu_logout=0x7f080013;
+        public static final int menu_new_conversation=0x7f080012;
+        public static final int menu_search=0x7f080011;
+        public static final int menu_settings=0x7f080010;
+        public static final int password=0x7f080006;
+        public static final int remember_password=0x7f080009;
+        public static final int save=0x7f08000b;
         public static final int send_button=0x7f080003;
     }
     public static final class layout {

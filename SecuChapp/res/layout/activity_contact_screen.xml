@@ -14,4 +14,12 @@
         android:textColor="#ffffffff"
         android:text="Conversation" />
 
+    <ListView
+        android:id="@+id/contacts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" >
+    </ListView>
+
     </RelativeLayout>

@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,7 +28,10 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 	private TCPClientService mService;	//This is the TCPClient Service which 
 	private boolean mBound;				//is the service bound or not?
 	private Listener listener;			//Listener thread which grabs new messages from the 
-	
+	private ArrayList<String> contacts = new ArrayList<String>(); //online contacts list
+	private ListView mContacts;
+	private MyCustomAdapter mAdapter;
+	 
 	 @SuppressWarnings("unchecked")
 	@Override
 	 /**
@@ -40,6 +44,11 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 		 super.setTitle("Secure Chat");
 		 setContentView(R.layout.activity_contact_screen);
 		 
+		 mContacts = (ListView)findViewById(R.id.contacts);
+	     mAdapter = new MyCustomAdapter(this, contacts);
+	     mContacts.setAdapter(mAdapter);
+	     
+	     
 		//Start the TCP Client 
         Intent intent = new Intent(this, TCPClientService.class);
 		startService(intent);
@@ -157,6 +166,11 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
     		while(mService == null);
     		while(!this.isInterrupted()){
 					if (mService.numNewMessages != 0) {
+						//Grab latest message
+						 contacts.add(mService.getLatestMessage());
+						 //Tell the adapter that the data set has changed
+						 Log.e("ContactScreen", "Contact delivered to adapter");
+						 mAdapter.notifyDataSetChanged();
 						//latestMessage = mService.getLatestMessage();
 					}
     		}
