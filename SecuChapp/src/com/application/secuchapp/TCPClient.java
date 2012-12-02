@@ -5,12 +5,18 @@ import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
  
- 
+/*********************************************************************************************************************
+ * Class: TCPClient
+ * 
+ * TCP Client class responsible for allowing the phones to connect to the server and send 
+ * and receive messages
+ * 
+ **********************************************************************************************************************/ 
 public class TCPClient {
  
     private String serverMessage;
-    public static final String SERVERIP = "192.168.43.145"; //your computer IP address
-    public static final int SERVERPORT = 4550;
+    public static final String SERVERIP = "192.168.2.13"; //your computer IP address
+    public static final int SERVERPORT = 4442;
     private OnMessageReceived mMessageListener = null;
     private boolean mRun = false;
  
