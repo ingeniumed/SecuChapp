@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000" >
+
+    <QuickContactBadge
+        android:id="@+id/quickContactBadge1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_alignBottom="@+id/quickContactBadge1"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/quickContactBadge1"
+        android:text="contact"
+        android:textColor="#ffffffff"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="fill_parent"
+        android:layout_height="65sp"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/quickContactBadge1"
+        android:layout_marginLeft="40sp"
+        android:text="position"
+        android:textColor="#ffffffff"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="fill_parent"
+        android:layout_height="65sp"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginLeft="40sp"
+        android:text="dept"
+        android:textColor="#ffffffff"
+        android:textSize="25sp"
+        
+></TextView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="fill_parent"
+        android:layout_height="65sp"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView3"
+        android:layout_marginLeft="40sp"
+        android:text="ext"
+        android:textColor="#ffffffff"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="fill_parent"
+        android:layout_height="65sp"
+        android:gravity="center_vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textView4"
+        android:layout_marginLeft="40sp"
+        android:text="email"
+        android:textColor="#ffffffff"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp"
+        android:textColor="#ffffff"
+        android:text="Start New Conversation" />
+
+     </RelativeLayout>
+     
+
+    
+      

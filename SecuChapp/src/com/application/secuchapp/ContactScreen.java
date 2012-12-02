@@ -83,6 +83,8 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 	    					 getString(R.string.title_section_1),
 	    				 }),
 	    				 this);
+	     
+	     mContacts.OnItemClickListener
 	 }
 	 public boolean onCreateOptionsMenu(Menu menu) {
 		 getMenuInflater().inflate(R.menu.activity_contacts_screen, menu);
