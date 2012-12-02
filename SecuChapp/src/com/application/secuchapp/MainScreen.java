@@ -26,7 +26,7 @@ public class MainScreen extends FragmentActivity implements ActionBar.OnNavigati
 	  */
 	 public void onCreate(Bundle savedInstanceState) {
 		 super.onCreate(savedInstanceState);
-		 super.setTitle("Secure Chat");
+		 super.setTitle("");
 		 setContentView(R.layout.activity_main_screen);
 		 
 		 /*
@@ -73,8 +73,6 @@ public class MainScreen extends FragmentActivity implements ActionBar.OnNavigati
 			 return true;
 		 case R.id.menu_settings:
 			 startActivity(new Intent(this, SettingScreen.class));
-			 return true;
-		 case R.id.menu_search:
 			 return true;
 		 default:
 			 return super.onOptionsItemSelected(item);

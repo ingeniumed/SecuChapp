@@ -20,7 +20,7 @@ public class SettingScreen extends Activity {
 	  */
 	 public void onCreate(Bundle savedInstanceState) {
 		 super.onCreate(savedInstanceState);
-		 super.setTitle("Secure Chat");
+		 super.setTitle("Settings");
 		 setContentView(R.layout.activity_settings_screen);
 		 
 		 /*
@@ -54,9 +54,6 @@ public class SettingScreen extends Activity {
 	 public boolean onOptionsItemSelected(MenuItem item) {
 		 // Handle item selection
 		 switch (item.getItemId()) {
-		 case R.id.menu_home:
-			 finish();
-			 return true;
 		 default:
 			 return super.onOptionsItemSelected(item);
 		 }

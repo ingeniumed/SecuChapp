@@ -41,9 +41,15 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 	  */
 	 public void onCreate(Bundle savedInstanceState) {
 		 super.onCreate(savedInstanceState);
-		 super.setTitle("Secure Chat");
+		 super.setTitle("");
 		 setContentView(R.layout.activity_contact_screen);
-		 
+		 contacts.add("Gopal Krishnan");
+		 contacts.add("Blayne Tilban");
+		 contacts.add("Evan Skeete");
+		 contacts.add("Matt Nero");
+		 contacts.add("Lord Sauron");
+		 contacts.add("Frodo Baggins");
+		 contacts.add("Bilbo Baggins");
 		 mContacts = (ListView)findViewById(R.id.contacts);
 	     mAdapter = new MyCustomAdapter(this, contacts);
 	     mContacts.setAdapter(mAdapter);
@@ -77,37 +83,17 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 	    					 getString(R.string.title_section_1),
 	    				 }),
 	    				 this);
-	     
-	     Button conversation = (Button) findViewById (R.id.conversation);
-	     conversation.setOnClickListener(new View.OnClickListener(){
-	     	public void onClick(View view) { 
-				
-				listener.interrupt();
-	     		
-	     		Intent intent_2 = new Intent(view.getContext(),ConversationScreen.class);
-	        	startActivityForResult(intent_2,0);
-	     	}
-	     });
 	 }
 	 public boolean onCreateOptionsMenu(Menu menu) {
-		 getMenuInflater().inflate(R.menu.activity_secure_chat, menu);
+		 getMenuInflater().inflate(R.menu.activity_contacts_screen, menu);
 		 return true;
 	 }
 	 
 	 public boolean onOptionsItemSelected(MenuItem item) {
 		 // Handle item selection
 		 switch (item.getItemId()) {
-		 case R.id.menu_logout:
-			 finish();
-			 return true;
-		 case R.id.menu_new_conversation:
-			 mService.sendMessage("C|");
-			 //startActivity(new Intent(this, ConversationScreen.class));
-			 return true;
 		 case R.id.menu_settings:
 			 startActivity(new Intent(this, SettingScreen.class));
-			 return true;
-		 case R.id.menu_search:
 			 return true;
 		 default:
 			 return super.onOptionsItemSelected(item);
@@ -167,14 +153,14 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
     		while(!this.isInterrupted()){
 					if (mService.numNewMessages != 0) {
 						//Grab latest message
-						 contacts.add(mService.getLatestMessage());
-						 Log.e("ContactScreen",contacts.get(0));
+						 //contacts.add("test name");
+						 //Log.e("ContactScreen",contacts.get(0));
 						 //Tell the adapter that the data set has changed
-						 Log.e("ContactScreen", "Contact delivered to adapter");
-						 mAdapter.notifyDataSetChanged();
+						 //Log.e("ContactScreen", "Contact delivered to adapter");
+						 //mAdapter.notifyDataSetChanged();
 						//latestMessage = mService.getLatestMessage();
 					}
-    		}
+    		} 
     	}
     }
 
