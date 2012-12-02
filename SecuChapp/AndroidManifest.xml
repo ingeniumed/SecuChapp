@@ -29,6 +29,7 @@
         <activity android:name=".SettingScreen"></activity>
         <activity android:name=".ContactScreen"></activity>
         <service android:name=".TCPClientService"></service>
+        <activity android:name=".profile_screen"></activity>
     </application>
 
 </manifest>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class profile_screen extends Activity {
 	
@@ -18,6 +19,14 @@ public class profile_screen extends Activity {
 		 super.onCreate(savedInstanceState);
 		 setContentView(R.layout.profile_screen);
 		 super.setTitle("Secure Chat");
-
+		 
+		 TextView name = (TextView) findViewById (R.id.contact_name);
+		 TextView extension = (TextView) findViewById (R.id.extension);
+		 TextView department = (TextView) findViewById (R.id.department);
+		 TextView position = (TextView) findViewById (R.id.position);
+		 TextView email = (TextView) findViewById (R.id.email);
+		 
+		 
+		 
 	 }
 }

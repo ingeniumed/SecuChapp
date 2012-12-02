@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/contact_name"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
@@ -25,7 +25,7 @@
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/position"
         android:layout_width="fill_parent"
         android:layout_height="65sp"
         android:gravity="center_vertical"
@@ -38,13 +38,13 @@
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/department"
         android:layout_width="fill_parent"
         android:layout_height="65sp"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/position"
         android:layout_marginLeft="40sp"
         android:text="dept"
         android:textColor="#ffffffff"
@@ -53,26 +53,26 @@
 ></TextView>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/extension"
         android:layout_width="fill_parent"
         android:layout_height="65sp"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView3"
+        android:layout_below="@+id/department"
         android:layout_marginLeft="40sp"
         android:text="ext"
         android:textColor="#ffffffff"
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/email"
         android:layout_width="fill_parent"
         android:layout_height="65sp"
         android:gravity="center_vertical"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@+id/extension"
         android:layout_marginLeft="40sp"
         android:text="email"
         android:textColor="#ffffffff"
