@@ -72,6 +72,9 @@ public class SecureChat extends Activity {
     
     }
     
+    public void onBackPressed() {
+    	// nothing
+    }
     @Override
     /**
      * OnStop method for Login Screen
