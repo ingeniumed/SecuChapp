@@ -56,6 +56,7 @@ public class MainScreen extends FragmentActivity implements ActionBar.OnNavigati
 	        		startActivityForResult(intent_2,0);
 	     	}
 	     });
+	    
 	 }
 	 public boolean onCreateOptionsMenu(Menu menu) {
 		 getMenuInflater().inflate(R.menu.activity_secure_chat, menu);
@@ -66,7 +67,7 @@ public class MainScreen extends FragmentActivity implements ActionBar.OnNavigati
 		 // Handle item selection
 		 switch (item.getItemId()) {
 		 case R.id.menu_logout:
-			 finish();
+			 startActivity(new Intent(this, SecureChat.class));
 			 return true;
 		 case R.id.menu_new_conversation:
 			 startActivity(new Intent(this, ConversationScreen.class));
@@ -94,4 +95,9 @@ public class MainScreen extends FragmentActivity implements ActionBar.OnNavigati
 		}
 		return false;
 	}
+	
+    @Override
+    public void onBackPressed() {
+    	// nothing
+    }
 }
