@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 
 /***************************************************************************************************************
@@ -31,8 +33,10 @@ public class ConversationScreen extends Activity {
 	 private MyCustomAdapter mAdapter;
 	 private TCPClientService mService;
 	 private Listener listener; 
+	 private String receiver; 				//name of person who will be receiving the messages
+	 
 	 @SuppressWarnings("unused")
-	private boolean mBound;
+	 private boolean mBound;
 	 
 	 private ArrayList<String> messages = new ArrayList<String>();
 	 
@@ -45,6 +49,8 @@ public class ConversationScreen extends Activity {
 		 super.onCreate(savedInstanceState);
 		 super.setTitle("Secure Chat");
 		 setContentView(R.layout.activity_chat_screen);
+		 
+		 final String receiver = getIntent().getStringExtra("receiver");
 		 
 		 // Custom action bar that has no app icon
 		 final ActionBar actionBar = getActionBar();
@@ -81,7 +87,7 @@ public class ConversationScreen extends Activity {
  
 	    		 //Sends the message to the server
 	    		 if (mService != null) {
-	    			 mService.sendMessage(message);
+	    			 mService.sendMessage("M"+"|"+receiver+"|"+message);
 	    		 }
  
 	    		 //Refresh the list
@@ -135,16 +141,31 @@ public class ConversationScreen extends Activity {
 	    		while(mService == null);
 	    		while(true){
 						if (mService.numNewMessages != 0) {
-							//Grab latest message
-							 messages.add(mService.getLatestMessage());
-							 //Tell the adapter that the data set has changed
-							 Log.e("ConversationScreen", "Message delivered to adapter");
-							 mAdapter.notifyDataSetChanged();
-							 //Just for shits
-							 mAdapter.notifyDataSetChanged();
-
+							deliverMessage d = new deliverMessage();
+							d.execute();
+							mService.numNewMessages = 0;
 						}
 	    		}
 	    	}
 	    }
+	 
+	 private class deliverMessage extends AsyncTask<String, String, Void> {			
+			
+	    	@Override
+	    	protected Void doInBackground(String... name) {
+	        		publishProgress(name);
+	        		return null;
+	        }
+			
+			@Override
+	        protected void onProgressUpdate(String... name) {
+	        	//Raise a toast when if user is offline, otherwise switch to conversation screen
+				//Grab latest message
+				 messages.add(mService.getLatestMessage());
+				 //Tell the adapter that the data set has changed
+				 Log.e("ConversationScreen", "Message delivered to adapter");
+				 mAdapter.notifyDataSetChanged();
+	        }
+	    }
+
 }
