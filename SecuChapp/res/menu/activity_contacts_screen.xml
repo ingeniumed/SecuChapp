@@ -2,5 +2,9 @@
 	<item android:id="@+id/menu_settings"
         android:title="Settings"
         android:orderInCategory="200"
-        android:showAsAction="never" />    
+        android:showAsAction="never" />
+	<item android:id="@+id/menu_logout"
+	    android:title="Log Out"
+        android:orderInCategory="200"
+        android:showAsAction="never" />       
 </menu>
