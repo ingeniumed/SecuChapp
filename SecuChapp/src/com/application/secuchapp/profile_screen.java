@@ -106,13 +106,13 @@ public class profile_screen extends Activity {
 	    		while(mService == null);
 	    		while(!this.isInterrupted()){
 						if (mService.numNewMessages != 0) {
+							mService.numNewMessages = 0;
 							String latestMessage = mService.getLatestMessage();
 							gotResponse = true;
 							if(latestMessage.charAt(0) == 'T'){
 								Log.e("ProfileScreen",latestMessage);
 								isOnline = true;
-							}
-													
+							}							
 						}
 	    		} 
 	    	}
@@ -148,6 +148,7 @@ public class profile_screen extends Activity {
 					Toast.makeText(getApplicationContext(), "OFFLINE", Toast.LENGTH_SHORT).show();
 
 				}
+			this.cancel(true);
 	        }
 	    }
 }

@@ -1,12 +1,6 @@
 package com.application.secuchapp;
 
-import java.io.UnsupportedEncodingException;
-import java.security.InvalidKeyException;
 import java.util.ArrayList;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-
 import com.application.secuchapp.TCPClientService.LocalBinder;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -34,13 +28,12 @@ import android.widget.Toast;
 
 public class ConversationScreen extends Activity {
 	
-	public static final String key ="corleone";
+	 
 	 private ListView mList;
 	 private MyCustomAdapter mAdapter;
 	 private TCPClientService mService;
-	 private Listener listener; 
+	 private Thread listener; 
 	 private String receiver; 				//name of person who will be receiving the messages
-	 String encrypted;
 	 
 	 @SuppressWarnings("unused")
 	 private boolean mBound;
@@ -80,7 +73,8 @@ public class ConversationScreen extends Activity {
 	     bindService(intent, mConnection, Context.BIND_AUTO_CREATE);
         
 	     //Start the message Listener
-	     listener = new Listener();
+	     Runnable r = new Listener();
+	     listener =  new Thread(r);
 	     listener.start();
 	     
 	     //Setup the send button onClick Listener
@@ -88,25 +82,13 @@ public class ConversationScreen extends Activity {
 	    	 public void onClick(View view) {
 	    		 
 	    		 String message = editText.getText().toString();
-	    		 
-	    		 
-	    		 try {
-					encrypted= new String(Cryptography.encrypt(key.getBytes("UTF-8"), message.getBytes("UTF-8")));
-				} catch (UnsupportedEncodingException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-	    		 
-	    		 
+ 
+	    		 //Add the text in the arrayList
 	    		 messages.add("Me: " + message);
  
 	    		 //Sends the message to the server
 	    		 if (mService != null) {
-	    			 mService.sendMessage("M"+"|"+receiver+"|"+encrypted);
+	    			 mService.sendMessage("M"+"|"+receiver+"|"+message);
 	    		 }
  
 	    		 //Refresh the list
@@ -127,7 +109,7 @@ public class ConversationScreen extends Activity {
 		 // Handle item selection
 		 switch (item.getItemId()) {
 		 case R.id.menu_home:
-			 finish();
+			 startActivity(new Intent(this, MainScreen.class));
 			 return true;
 		 case R.id.menu_settings:
 			 startActivity(new Intent(this, SettingScreen.class));
@@ -155,18 +137,33 @@ public class ConversationScreen extends Activity {
 	 /**
 	  * This Thread listens for messages from the server and handles them 
 	  */
-	 private class Listener extends Thread{
-	    	public void run(){
+//	 private class Listener extends Thread{
+//	    	public void run(){
+//	    		while(mService == null);
+//	    		while(true){
+//						if (mService.numNewMessages != 0) {
+//							mService.numNewMessages = 0;
+//							Log.e("ConversationScreen", "new message from server");
+//							deliverMessage d = new deliverMessage();
+//							d.execute();
+//						}
+//	    		}
+//	    	}
+//	    }
+	 
+	 private class Listener implements Runnable{
+		 public void run(){
 	    		while(mService == null);
 	    		while(true){
 						if (mService.numNewMessages != 0) {
+							mService.numNewMessages = 0;
+							Log.e("ConversationScreen", "new message from server");
 							deliverMessage d = new deliverMessage();
 							d.execute();
-							mService.numNewMessages = 0;
 						}
 	    		}
 	    	}
-	    }
+	 }
 	 
 	 private class deliverMessage extends AsyncTask<String, String, Void> {			
 			
@@ -180,10 +177,12 @@ public class ConversationScreen extends Activity {
 	        protected void onProgressUpdate(String... name) {
 	        	//Raise a toast when if user is offline, otherwise switch to conversation screen
 				//Grab latest message
-				 messages.add(mService.getLatestMessage());
+				String message = mService.getLatestMessage();
+				 messages.add(message);
 				 //Tell the adapter that the data set has changed
-				 Log.e("ConversationScreen", "Message delivered to adapter");
+				 Log.e("ConversationScreen", "Message delivered to adapter" + message);
 				 mAdapter.notifyDataSetChanged();
+				 this.cancel(true);
 	        }
 	    }
 

@@ -1,6 +1,7 @@
 package com.application.secuchapp;
 
 import com.application.secuchapp.TCPClientService.LocalBinder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.content.ComponentName;
@@ -8,9 +9,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /***************************************************************************************************************
  * 												LOGIN SCREEN
@@ -24,6 +27,11 @@ public class SecureChat extends Activity {
 	private Listener listener;			//Listener thread which grabs new messages from the 
 	@SuppressWarnings("unused")
 	private String latestMessage = "";	//Latest message received from the server (updated by the listener thread)
+	
+	private boolean isOnline = false; 			//Check if the client is online
+	private boolean gotResponse = false;
+	private String name1 = "";
+
 	
     @Override
     /**
@@ -60,21 +68,16 @@ public class SecureChat extends Activity {
 			
 			mService.sendMessage("L" + "|" + username + "|" + password); 
 			
+			//Wait for response form server
+			checkOnlineTask task = new checkOnlineTask();
+			task.execute();
 			listener.interrupt();
-			
-			//Setup intent for switching activities
-			Intent intent_1 = new Intent(view.getContext(),MainScreen.class);
-	   		overridePendingTransition(R.anim.rotate_out,R.anim.rotate_in);
-	   		startActivityForResult(intent_1,0);
 	   		
 		}
 	    });
     
     }
     
-    public void onBackPressed() {
-    	// nothing
-    }
     @Override
     /**
      * OnStop method for Login Screen
@@ -111,10 +114,53 @@ public class SecureChat extends Activity {
     		while(mService == null);
     		while(!this.isInterrupted()){
 					if (mService.numNewMessages != 0) {
-						latestMessage = mService.getLatestMessage();
+						mService.numNewMessages = 0;
+						String latestMessage = mService.getLatestMessage();
+						gotResponse = true;
+						if(latestMessage.charAt(0) == 'T'){
+							Log.e("ProfileScreen",latestMessage);
+							isOnline = true;
+						}
+												
 					}
-    		}
+    		} 
     	}
+    }
+    
+    @Override
+    public void onStart(){
+    	super.onStart();
+    	
+    	listener = new Listener();
+		listener.start();
+    }
+    
+    private class checkOnlineTask extends AsyncTask<String, String, Void> {			
+		
+    	@Override
+    	protected Void doInBackground(String... name) {
+				Log.e("checkOnlineTalk",name1);
+        		while(!gotResponse); //Wait for response from server
+        		gotResponse = false;
+        		publishProgress(name);
+        		return null;
+        }
+		
+		@Override
+        protected void onProgressUpdate(String... name) {
+        	//Raise a toast when if user is offline, otherwise switch to conversation screen
+        	if(isOnline){
+        		listener.interrupt();
+        		//Setup intent for switching activities
+    			Intent intent_1 = new Intent(getApplicationContext(),MainScreen.class);
+    	   		overridePendingTransition(R.anim.rotate_out,R.anim.rotate_in);
+    	   		startActivityForResult(intent_1,0);
+			}else{
+				Toast.makeText(getApplicationContext(), "INCORRECT", Toast.LENGTH_SHORT).show();
+
+			}
+		this.cancel(true);
+        }
     }
 
 }

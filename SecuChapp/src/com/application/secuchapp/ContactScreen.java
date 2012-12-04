@@ -107,9 +107,6 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 		 case R.id.menu_settings:
 			 startActivity(new Intent(this, SettingScreen.class));
 			 return true;
-		 case R.id.menu_logout:
-			 startActivity(new Intent(this, SecureChat.class));
-			 return true;
 		 default:
 			 return super.onOptionsItemSelected(item);
 		 }
@@ -131,11 +128,6 @@ public class ContactScreen extends FragmentActivity implements ActionBar.OnNavig
 		return false;
 	}
 	
-    @Override
-    public void onBackPressed() {
-    	// nothing
-    }
-    
 	@Override
     /**
      * OnStop method for Login Screen

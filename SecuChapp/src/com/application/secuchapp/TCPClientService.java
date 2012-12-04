@@ -84,7 +84,7 @@ public class TCPClientService extends Service{
 		}
 		
 		public void handleMessage(String message){
-			numNewMessages ++;
+			numNewMessages = 1;
 			messages.add(message);
 			Log.e("ClientService","Handled message:" + message);
 		}
@@ -99,7 +99,7 @@ public class TCPClientService extends Service{
 	
 	public String getLatestMessage(){
 		if(messages.size() > 0){
-			numNewMessages = 0;
+			//numNewMessages = 0;
 			String message = messages.get(messages.size()-1);
 			Log.e("ClientService","delivering message:" + message);
 			return message;
