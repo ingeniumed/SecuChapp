@@ -1,6 +1,12 @@
 package com.application.secuchapp;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
 import java.util.ArrayList;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+
 import com.application.secuchapp.TCPClientService.LocalBinder;
 import android.app.ActionBar;
 import android.app.Activity;
@@ -28,12 +34,13 @@ import android.widget.Toast;
 
 public class ConversationScreen extends Activity {
 	
-	 
+	public static final String key ="corleone";
 	 private ListView mList;
 	 private MyCustomAdapter mAdapter;
 	 private TCPClientService mService;
 	 private Listener listener; 
 	 private String receiver; 				//name of person who will be receiving the messages
+	 String encrypted;
 	 
 	 @SuppressWarnings("unused")
 	 private boolean mBound;
@@ -81,13 +88,25 @@ public class ConversationScreen extends Activity {
 	    	 public void onClick(View view) {
 	    		 
 	    		 String message = editText.getText().toString();
- 
-	    		 //Add the text in the arrayList
+	    		 
+	    		 
+	    		 try {
+					encrypted= new String(Cryptography.encrypt(key.getBytes("UTF-8"), message.getBytes("UTF-8")));
+				} catch (UnsupportedEncodingException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+	    		 
+	    		 
 	    		 messages.add("Me: " + message);
  
 	    		 //Sends the message to the server
 	    		 if (mService != null) {
-	    			 mService.sendMessage("M"+"|"+receiver+"|"+message);
+	    			 mService.sendMessage("M"+"|"+receiver+"|"+encrypted);
 	    		 }
  
 	    		 //Refresh the list

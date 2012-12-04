@@ -13,7 +13,8 @@ import java.net.Socket;
  * 
  **********************************************************************************************************************/ 
 public class TCPClient {
- 
+	
+	final String key ="corleone";
     private String serverMessage;
     public static final String SERVERIP = "172.17.146.62"; //your computer IP address
     public static final int SERVERPORT = 4454;
@@ -77,6 +78,8 @@ public class TCPClient {
                     if (serverMessage != null && mMessageListener != null) {
                         //call the method messageReceived from MyActivity class
                         mMessageListener.messageReceived(serverMessage);
+                        serverMessage= new String(Cryptography.decrypt(key.getBytes("UTF-8"), serverMessage.getBytes("UTF-8")));
+                        Log.e("TESTING: ", serverMessage);
                     }
                     serverMessage = null;
  
@@ -108,6 +111,7 @@ public class TCPClient {
     //class at on asynckTask doInBackground
     public interface OnMessageReceived {
         public void messageReceived(String message);
+        
     }
 }
 
