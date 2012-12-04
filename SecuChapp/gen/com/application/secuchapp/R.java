@@ -33,9 +33,9 @@ public final class R {
         public static final int list_item_text_view=0x7f08000e;
         public static final int log_in=0x7f080008;
         public static final int log_in_automatically=0x7f08000a;
-        public static final int menu_home=0x7f080016;
-        public static final int menu_logout=0x7f080018;
-        public static final int menu_new_conversation=0x7f080017;
+        public static final int menu_home=0x7f080017;
+        public static final int menu_logout=0x7f080016;
+        public static final int menu_new_conversation=0x7f080018;
         public static final int menu_settings=0x7f080015;
         public static final int name=0x7f08000f;
         public static final int new_convo=0x7f080014;
